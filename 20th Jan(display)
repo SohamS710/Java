@@ -1,0 +1,12 @@
+public class Main {
+    String name;
+    void dislay() {
+        System.out.println("Name: " + name);
+    }
+    public static void main(String[] args) {
+        int a = 5;
+        Main obj = new Main();
+        obj.name = "John";
+        obj.dislay();
+    }
+}
