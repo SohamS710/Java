@@ -1,0 +1,8 @@
+public class Main{
+    public static void main(String[] args) {
+        int a = 20, b = 21;
+        System.out.print(a + b);  // prints 41
+        System.out.print(a - b);  // prints -1
+        System.out.print(a = b);  // a becomes 21, prints 21
+    }
+}
