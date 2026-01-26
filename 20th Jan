@@ -1,0 +1,11 @@
+public class Main {
+    void modify(int x) {
+        x = x+10;
+    }
+    public static void main(String[] args) {
+        int a = 5;
+        Main obj = new Main();
+        obj.modify(a);
+        System.out.println(a);
+    }
+}
