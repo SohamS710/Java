@@ -1,0 +1,10 @@
+public class Main {
+    int id;
+    String name;
+    public static void main(String[] args) {
+        Main s1 = new Main();
+        s1.id = 101;
+        s1.name = "Sonoo ";
+        System.out.println(s1.id + " " + s1.name);
+    }   
+}
