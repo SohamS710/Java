@@ -1,0 +1,49 @@
+class Shape {
+    void draw(String color) {
+        System.out.println("Shape is drawn in " + color + " color");
+    }
+
+    void resize(int scale) {
+        System.out.println("Shape is resized by scale " + scale);
+    }
+}
+
+class Rectangle extends Shape {
+    void area(int length, int width) {
+        System.out.println("Rectangle area is " + (length * width));
+    }
+
+    void perimeter(int length, int width) {
+        System.out.println("Rectangle perimeter is " + (2 * (length + width)));
+    }
+}
+
+class Square extends Rectangle {
+    void diagonalSquare(int side) {
+        System.out.println("Square diagonal squared is " + (2 * side * side));
+    }
+
+    void describe(int side) {
+        System.out.println("Square with all sides equal to " + side);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Square sq = new Square();
+
+        // Calling methods from Shape class
+        sq.draw("green");
+        sq.resize(3);
+        System.out.println();
+
+        // Calling methods from Rectangle class
+        sq.area(4, 4);
+        sq.perimeter(4, 4);
+        System.out.println();
+
+        // Calling methods from Square class
+        sq.diagonalSquare(4);
+        sq.describe(4);
+    }
+}
