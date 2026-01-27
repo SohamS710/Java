@@ -9,7 +9,7 @@ Inheritance
 
 🛠️ Requirements: 
 Java JDK 8 or later
-Any Java IDE (IntelliJ IDEA, Eclipse, VS Code, NetBeans)
+Any Java IDE (Eclipse, VS Code)
 
 🎯 The purpose of this repository is to:
 Practice Java programming
