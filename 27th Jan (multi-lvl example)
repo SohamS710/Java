@@ -34,10 +34,12 @@ public class Main {
         // Calling methods from Animal class
         gs.eat("meat", 5);
         gs.sleep(8, "home");
+        System.out.println();
 
         // Calling methods from Dog class
         gs.bark("Woof", 3);
         gs.run(20, "park");
+        System.out.println();
 
         // Calling methods from GermanShepherd class
         gs.guard("house", 12);
