@@ -1,7 +1,10 @@
 class Animal {
     void eat() {
         System.out.println("This animal eats food");
+    }
 
+    void sleep() {
+        System.out.println("This animal sleeps");
     }
 }
 
@@ -9,12 +12,18 @@ class Dog extends Animal {
     void bark() {
         System.out.println("Dog barks");
     }
+
+    void run() {
+        System.out.println("Dog runs fast");
+    }
 }
 
 public class Main {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Dog dog = new Dog();
-        dog.eat();  // Inherited method from Animal class
-        dog.bark(); // Method from Dog class
+        dog.eat();    // Animal method
+        dog.sleep();  // Animal method
+        dog.bark();   // Dog method
+        dog.run();    // Dog method
     }
 }
