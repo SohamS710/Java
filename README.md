@@ -1,13 +1,13 @@
 This repository contains Java source code developed as part of my Java class.
 It includes examples, assignments, and practice programs demonstrating core Java concepts.
 
-🚀 Features / Topics Covered
+🚀 Features / Topics Covered: 
 Object-Oriented Programming (OOP)
 Classes and Objects
 Inheritance
 
 
-🛠️ Requirements
+🛠️ Requirements: 
 Java JDK 8 or later
 Any Java IDE (IntelliJ IDEA, Eclipse, VS Code, NetBeans)
 
@@ -16,6 +16,6 @@ Practice Java programming
 Demonstrate understanding of Java concepts
 Serve as a reference for future projects
 
-📌 Notes
+📌 Notes: 
 Code is written for learning purposes.
 Feel free to improve or refactor any class.
