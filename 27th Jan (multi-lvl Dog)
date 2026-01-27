@@ -1,0 +1,48 @@
+class Animal {
+    void eat(String food, int quantity) {
+        System.out.println("Animal eats " + quantity + " kg of " + food + " per month");
+    }
+
+    void sleep(int hours, String place) {
+        System.out.println("Animal sleeps for " + hours + " hours at " + place);
+    }
+}
+
+class Dog extends Animal {
+    void bark(String sound, int times) {
+        System.out.println("Dog barks " + times + " times with sound: " + sound);
+    }
+
+    void run(int speed, String location) {
+        System.out.println("Dog runs at " + speed + " km/h in " + location);
+    }
+}
+
+class GermanShepherd extends Dog {
+    void guard(String area, int duration) {
+        System.out.println("German Shepherd guards " + area + " for " + duration + " hours");
+    }
+
+    void fetch(String item, int distance) {
+        System.out.println("German Shepherd fetches " + item + " from " + distance + " meters away");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        GermanShepherd gs = new GermanShepherd();
+
+        // Calling methods from Animal class
+        gs.eat("meat", 5);
+        gs.sleep(8, "home");
+        System.out.println();
+
+        // Calling methods from Dog class
+        gs.bark("Woof", 3);
+        gs.run(20, "park");
+        System.out.println();
+
+        // Calling methods from GermanShepherd class
+        gs.guard("house", 12);
+        gs.fetch("ball", 30);
+    }
+}
