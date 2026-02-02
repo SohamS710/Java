@@ -1,0 +1,21 @@
+class Parent {
+	final void display() {
+		System.out.println("This is a final method in Parent class.");
+	}
+}
+
+class Child extends Parent {
+	// Trying to override the final method will cause a compile-time error
+	/*
+	void display() {
+		System.out.println("This is an overridden method in Child class.");
+	}
+	*/
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Child child = new Child();
+		child.display(); // Calls the final method from Parent class
+	}
+}
