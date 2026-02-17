@@ -1,0 +1,14 @@
+import java.util.Vector;
+
+public class VectorExample {
+    public static void main(String[] args) {
+        Vector<Integer> nums = new Vector<>();
+        nums.add(100);
+        nums.add(200);
+        nums.add(300);
+        System.out.println("Vector: " + nums);
+        nums.remove(1);
+        System.out.println("After removing index 1: " + nums);
+        System.out.print("Size: "+ nums.size());
+    }
+}
