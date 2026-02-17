@@ -1,0 +1,22 @@
+public class ArrayExample {
+    public static void main(String[] args) {
+        int[] num = {10,20,30,40,50};
+        
+
+        for (int nums : num) {
+            System.out.println(nums);
+        }
+
+        int[] num2 = {1,2,2,4,5};
+        int[] num3 = {100,101,105,106};
+
+        for (int nums : num2) {
+            System.out.println(nums);
+        }
+        
+        for (int nums : num3) {
+            System.out.println(nums);
+        }
+    }
+}
+
