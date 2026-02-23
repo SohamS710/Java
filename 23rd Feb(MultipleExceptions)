@@ -1,0 +1,13 @@
+public class MultipleExceptionSingleCatchExample {
+    public static void main(String[] args) {
+        try {
+            String str = "123a";
+            int num = Integer.parseInt(str);
+            int result = num / 0; // This will throw ArithmeticException    
+            System.out.println(str.length());
+        } catch(NumberFormatException | ArithmeticException e) {
+            System.out.println("Error: " + e.getClass().getSimpleName() + " occurred."  );
+        }
+        System.out.println("Program continues after handling exceptions.");
+    }
+}
