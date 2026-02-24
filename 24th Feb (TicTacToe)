@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Game {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char[] b = {'1','2','3','4','5','6','7','8','9'};
+        char p = 'X';
+        int c = 0;
+
+        while (true) {
+            System.out.println();
+            System.out.println(b[0] + " | " + b[1] + " | " + b[2]);
+            System.out.println("---------");
+            System.out.println(b[3] + " | " + b[4] + " | " + b[5]);
+            System.out.println("---------");
+            System.out.println(b[6] + " | " + b[7] + " | " + b[8]);
+            System.out.println();
+
+            System.out.print("Player " + p + " enter position: ");
+            int n = sc.nextInt();
+
+            if (n < 1 || n > 9 || b[n-1] == 'X' || b[n-1] == 'O') {
+                System.out.println("Invalid move");
+                continue;
+            }
+
+            b[n-1] = p;
+            c++;
+
+            if ((b[0]==p && b[1]==p && b[2]==p) ||
+                (b[3]==p && b[4]==p && b[5]==p) ||
+                (b[6]==p && b[7]==p && b[8]==p) ||
+                (b[0]==p && b[3]==p && b[6]==p) ||
+                (b[1]==p && b[4]==p && b[7]==p) ||
+                (b[2]==p && b[5]==p && b[8]==p) ||
+                (b[0]==p && b[4]==p && b[8]==p) ||
+                (b[2]==p && b[4]==p && b[6]==p)) {
+
+                System.out.println("Player " + p + " wins");
+                break;
+            }
+
+            if (c == 9) {
+                System.out.println("Draw");
+                break;
+            }
+
+            if (p == 'X')
+                p = 'O';
+            else
+                p = 'X';
+        }
+    }
+}
