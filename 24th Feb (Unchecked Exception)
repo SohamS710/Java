@@ -5,12 +5,12 @@ public class Main {
             int divisor = 0;
 
             for (int i = 0; i < n.length; i++) {
-                int res = n[i] / divisor;   // This will cause ArithmeticException
+                int res = n[i] / divisor;
                 System.out.println(res);
             }
 
         } catch (ArithmeticException e) {
-            throw new RuntimeException("Error: Division by zero occurred", e);
+            System.out.println("Error: Division by zero occurred. " + e.getMessage());
         }
     }
 }
