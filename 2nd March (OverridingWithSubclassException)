@@ -1,0 +1,22 @@
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+class Parent {
+    void readFile() throws IOException {
+        System.out.println("Reading file in Parent");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void readFile() throws FileNotFoundException {
+        System.out.println("File not found in Child");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Parent obj = new Child();
+        obj.readFile();
+    }
+}
