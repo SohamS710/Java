@@ -1,0 +1,90 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class CreateDB {
+    public static void main(String[] args) {
+
+        String url = "jdbc:mysql://localhost:3306/uni";
+        String user = "root";
+        String password = "Hmm@1234"; // change if needed
+
+        try {
+            // Load Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Create Connection
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to MySQL Database!");
+
+            // Create Statement
+            Statement stmt = con.createStatement();
+
+            // Display Existing Data
+            System.out.println("Initial Data:");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM student");
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " " +
+                                   rs.getString("name") + " " +
+                                   rs.getInt("marks"));
+            }
+
+            // INSERT
+            String insertQuery = "INSERT INTO student (id, name, marks) VALUES (?,?,?)";
+            PreparedStatement psInsert = con.prepareStatement(insertQuery);
+
+            psInsert.setInt(1, 102);
+            psInsert.setString(2, "Amit Joshi");
+            psInsert.setInt(3, 88);
+            psInsert.executeUpdate();
+
+            System.out.println("\nAfter Insert:");
+            rs = stmt.executeQuery("SELECT * FROM student");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " " +
+                                   rs.getString("name") + " " +
+                                   rs.getInt("marks"));
+            }
+
+            // UPDATE
+            String updateQuery = "UPDATE student SET marks = ? WHERE id = ?";
+            PreparedStatement psUpdate = con.prepareStatement(updateQuery);
+
+            psUpdate.setInt(1, 95);   // new marks
+            psUpdate.setInt(2, 102);  // id to update
+            psUpdate.executeUpdate();
+
+            System.out.println("\nAfter Update:");
+            rs = stmt.executeQuery("SELECT * FROM student");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " " +
+                                   rs.getString("name") + " " +
+                                   rs.getInt("marks"));
+            }
+
+            // DELETE
+            String deleteQuery = "DELETE FROM student WHERE id = ?";
+            PreparedStatement psDelete = con.prepareStatement(deleteQuery);
+
+            psDelete.setInt(1, 102); // id to delete
+            psDelete.executeUpdate();
+
+            System.out.println("\nAfter Delete:");
+            rs = stmt.executeQuery("SELECT * FROM student");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " " +
+                                   rs.getString("name") + " " +
+                                   rs.getInt("marks"));
+            }
+
+            // Close resources
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
