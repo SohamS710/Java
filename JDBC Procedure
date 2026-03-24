@@ -1,0 +1,111 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.CallableStatement;
+
+public class CreateDB {
+    public static void main(String[] args) {
+
+        String url = "jdbc:mysql://localhost:3306/uni";
+        String user = "root";
+        String password = "Hmm@1234";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to MySQL Database!");
+
+            Statement stmt = con.createStatement();
+
+            System.out.println("Initial Data:");
+            displayData(stmt);
+
+            // INSERT
+            String insertQuery = "insert into student (id, name, marks) values (?,?,?)";
+            PreparedStatement psInsert = con.prepareStatement(insertQuery);
+            psInsert.setInt(1, 102);
+            psInsert.setString(2, "Amit Joshi");
+            psInsert.setInt(3, 88);
+            psInsert.executeUpdate();
+
+            System.out.println("\nAfter Insert:");
+            displayData(stmt);
+
+            // UPDATE
+            String updateQuery = "update student set marks = ? where id = ?";
+            PreparedStatement psUpdate = con.prepareStatement(updateQuery);
+            psUpdate.setInt(1, 95);
+            psUpdate.setInt(2, 102);
+            psUpdate.executeUpdate();
+
+            System.out.println("\nAfter Update:");
+            displayData(stmt);
+
+            // DELETE
+            String deleteQuery = "delete from student where id = ?";
+            PreparedStatement psDelete = con.prepareStatement(deleteQuery);
+            psDelete.setInt(1, 102);
+            psDelete.executeUpdate();
+
+            System.out.println("\nAfter Delete:");
+            displayData(stmt);
+
+            // STORED PROCEDURE INSERT
+            CallableStatement cs = con.prepareCall("{call insertstudent(?,?,?)}");
+            cs.setInt(1, 103);
+            cs.setString(2, "Rahul");
+            cs.setInt(3, 90);
+            cs.execute();
+
+            System.out.println("\nAfter Stored Procedure (Insert):");
+            displayData(stmt);
+
+            // STORED PROCEDURE UPDATE
+            CallableStatement cs1 = con.prepareCall("{call updatestudent(?,?,?)}");
+            cs1.setInt(1, 1);
+            cs1.setString(2, "Amitosh Sharma");
+            cs1.setInt(3, 90);
+            cs1.execute();
+
+            System.out.println("\nAfter Stored Procedure (Update):");
+            displayData(stmt);
+
+            // STORED PROCEDURE DELETE
+            CallableStatement cs2 = con.prepareCall("{call delstudent(?)}");
+            cs2.setInt(1, 103);
+            cs2.execute();
+
+            System.out.println("\nAfter Stored Procedure (Delete):");
+            displayData(stmt);
+
+            // Close all
+            stmt.close();
+            psInsert.close();
+            psUpdate.close();
+            psDelete.close();
+            cs.close();
+            cs1.close();
+            cs2.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void displayData(Statement stmt) throws Exception {
+        ResultSet rs = stmt.executeQuery("select * from student");
+
+        while (rs.next()) {
+            System.out.println(
+                rs.getInt("id") + " " +
+                rs.getString("name") + " " +
+                rs.getInt("marks")
+            );
+        }
+        rs.close();
+    }
+}
