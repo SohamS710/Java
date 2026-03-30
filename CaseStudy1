@@ -36,7 +36,7 @@ class FixedDeposit extends SavingsAccount {
 
     @Override
     public double calculateInterest() {
-        double interest = super.calculateInterest(); // SavingsAccount logic
+        double interest = super.calculateInterest();
 
         interest += balance * 0.02; // extra 2%
 
