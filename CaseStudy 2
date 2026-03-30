@@ -1,6 +1,6 @@
 class Employee {
-    protected String name;
-    protected double baseSalary;
+    String name;
+    double baseSalary;
 
     public Employee(String name, double baseSalary) {
         this.name = name;
@@ -20,7 +20,7 @@ class Manager extends Employee {
 
     @Override
     public double calculateSalary() {
-        double salary = super.calculateSalary(); // Employee logic
+        double salary = super.calculateSalary();
         salary += 2000; // management bonus
         return salary;
     }
@@ -34,7 +34,7 @@ class Executive extends Manager {
 
     @Override
     public double calculateSalary() {
-        double salary = super.calculateSalary(); // Manager logic
+        double salary = super.calculateSalary();
         salary += 0.10 * baseSalary; // 10% incentive on base
         return salary;
     }
