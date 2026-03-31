@@ -1,0 +1,86 @@
+abstract class Payment {
+    private String transactionId;
+    protected double amount;
+
+    public Payment (String transactionId, double amount) {
+        if (transactionId == null || transactionId.length() < 5) {
+            throw new IllegalArgumentException("Invalid transaction ID");
+        }
+
+        this.transactionId = transactionId;
+        this.amount = amount;
+    }
+    
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public double getamount() {
+        return amount;
+    } 
+
+    public abstract double processPayment();
+}
+
+class CreditCardPayment extends Payment {
+    public CreditCardPayment (String transactionId, double amount) {
+        super(transactionId, amount);
+    }
+    
+    @Override
+    public double processPayment() {
+        return amount + (0.02 * amount); // 2% fee
+    }
+}
+
+class UPIPayment extends Payment {
+    public UPIPayment(String transactionId, double amount) {
+        super(transactionId, amount);
+    }
+
+    @Override
+    public double processPayment() {
+        return amount;
+    }
+}
+
+class PaymentProcessor {
+
+    public static void process(Payment p) {
+        System.out.printf("Transaction %s = %.2f\n",
+                p.getTransactionId(),
+                p.processPayment());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // TC1
+        Payment p1 = new CreditCardPayment("TXN123", 1000);
+        System.out.printf("TC1 Output: %.2f\n", p1.processPayment());
+
+        // TC2
+        Payment p2 = new UPIPayment("UPI456", 1000);
+        System.out.printf("TC2 Output: %.2f\n", p2.processPayment());
+
+        // TC3 (Polymorphism)
+        Payment[] payments = {
+            new CreditCardPayment("TXN789", 1000),
+            new UPIPayment("UPI999", 1000)
+        };
+
+        double total = 0;
+        for (Payment p : payments) {
+            total += p.processPayment();
+        }
+
+        System.out.printf("TC3 Total: %.2f\n", total);
+
+        // Extra: using processor
+        System.out.println("\nUsing PaymentProcessor:");
+        for (Payment p : payments) {
+            PaymentProcessor.process(p);
+        }
+    }
+}
